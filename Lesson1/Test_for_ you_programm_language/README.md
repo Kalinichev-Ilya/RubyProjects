@@ -2,6 +2,7 @@
 
 The first version of the test. My task was to understand the basics of constructing loops, iterations, and variables in this language.
 
+![N|Solid](http://foykes.com/wp-content/uploads/2014/01/whatcodetochoose-preview.jpg)
 
 ### Todos
 
