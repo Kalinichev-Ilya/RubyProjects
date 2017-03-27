@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8' />
+    <title>People catalog</title>
+  </head>
+  <body>
+  <h1>Peoples</h1>
+  <ul>
+    <% @members.each do |member| %>
+    <li>
+      <a href="/catalog/<%=member.id %>"><%= member.name %></a>     
+    </li>
+    <% end %>
+  </ul>
+  <a href="/catalog/new">Add</a>
+</body>
+</html>

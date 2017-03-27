@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8' />
+  <title>Catalog — <%= @member.name %></title>
+</head>
+<body>
+  <h1><%= @member.name %></h1>
+  <table>
+    <tr>
+      <td><strong>Name:</strong></td>
+      <td><%= @member.name %></td>
+    </tr>
+    <tr>
+      <td><strong>Email:</strong></td>
+      <td><%= @member.email %></td>
+    </tr>
+    <tr>
+      <td><strong>Phone:</strong></td>
+      <td><%= @member.phone %></td>
+    </tr>
+  </table>
+  <a href="/catalog">Back to Index</a>
+</body>
+</html>

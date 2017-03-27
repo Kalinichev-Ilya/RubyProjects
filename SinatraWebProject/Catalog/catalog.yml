@@ -1,0 +1,16 @@
+---
+1: !ruby/object:Member
+  name: Alex
+  email: alex@gmail.com
+  phone: "+1563265899"
+  id: 1
+2: !ruby/object:Member
+  name: Gary
+  email: gary@gmail.com
+  phone: "+1562256348"
+  id: 2
+3: !ruby/object:Member
+  name: Mike
+  email: mike@gmail.com
+  phone: "+1562256348"
+  id: 3
