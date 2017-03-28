@@ -1,0 +1,24 @@
+#rectangular triangle
+
+puts "Hello! Enter the three sides of the triangle: "
+sides = []
+3.times do |input|
+	sides << gets.chop.to_i
+end
+
+#searching count of equals elements
+count = sides.each_with_object(Hash.new(0)){|side, count| count[side] += 1}.size
+#Pythagorean theorem: hypotenuse**2 = one_side**2 + second_side**2
+hypotenuse = sides.max
+sides.delete(hypotenuse)
+sum_squares_sides = sides.inject(0){|sum, side| sum + side**2}
+
+if count == 2
+	puts "Triangle is isosceles and rectangular."
+elsif count == 1
+	puts "The triangle is isosceles and equilateral, but not rectangular."
+elsif hypotenuse**2 == sum_squares_sides
+	puts "The triangle is rectangular."
+else
+	puts "Triangle isn't rectangular."
+end
