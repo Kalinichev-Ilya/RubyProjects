@@ -71,3 +71,40 @@ result = Hash.new(0)
 	 result[char] = alphabet[char]
 end
 result.each {|key,val| puts "#{key}: #{val}"}
+
+=begin
+Three digits are given, which denote the number, 
+month, year (requested from the user). Find the ordinal 
+number of the date, starting counting from the beginning 
+of the year. Consider that a year can be a leap year
+=end
+puts "Task 5"
+
+puts "Enter data separated by a space.(12 12 2012)"
+input = gets.chomp
+
+data = input.split ' '
+
+days = data[0].to_i
+month = data[1].to_i
+year = data[2].to_i
+
+#find count of days by month number
+def count_of_days_in(month) 
+	28 + (month + (month/8))%2 + 2%month + 2*(1/month)
+end
+
+result = 0
+#find count of days in all months
+(1..month).each do |res_count_days|
+	result += count_of_days_in(month)
+end
+
+#if year is leap +1 day
+if (year%4 == 0 && year%100 != 0) || (year%400 == 0)
+	result += days + 1
+else 
+	result += days
+end
+
+puts "#{result}"
