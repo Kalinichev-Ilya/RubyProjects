@@ -2,29 +2,28 @@ require_relative 'route'
 
 Class Train
   attr_accessor :type
-  attr_accessor :speed
-  attr_accessor :wagons
-  attr_accessor :route
+  attr_writer :speed
+  attr_reader :route
 
-  def initialize(type, speed = 0, wagons = 1)
-    @type = type
-    @speed = speed
+  def initialize(type, wagons = 1, speed = 0)
+    @type = type    
     @wagons = wagons
+    @speed = speed
   end
   
   #train speed up
   def speed_up(speed)
-    self.speed +=speed
+    @speed +=speed
   end
 
  #prints the current train speed
   def show(speed)
-    puts "Current speed: #{self.speed}"
+    puts "Current speed: #{@speed}"
   end
 
   #Turn on the brakes
   def brake
-    self.speed = 0
+    @speed = 0
   end
 
   #displays the number of wagons on the screen
@@ -34,18 +33,21 @@ Class Train
 
   #add wagon
   def add_wagon(count)
-    self.wagon += count
+    @wagon += count
   end
 
   #delete wagon
   def delete_wagon(count)
-    self.wagon -= count
+    @wagon -= count
   end
 
-  @route = []
   #add route
   def add_route(route)
-    @route = route
+    if route.class == Route
+      @route = route
+    else
+      raise InvalidArgument, "The passed argument must belong to the Route class."
+    end
   end
 
   #train rode the route
