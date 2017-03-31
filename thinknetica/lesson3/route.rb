@@ -1,16 +1,41 @@
 class Route
+attr_reader :start
+attr_reader :end
 
-  attr_accessor :start
-  attr_accessor :end
-  attr_reader :stations
+initialize(stations = [])
+  @stations = stations
+  @start = stations.first
+  @end = stations.pop
+end
+
+#set first station
+def start=(start)
+  @stations.unshift(start)
+end
+
+#set ending station
+def end=(end)
+  @stations << end
+end
+
+#get intermediate stations list
+def intermediate_stations
+  @stations.pop.shift
+  @stations
+end
 
 #setter route list
-  def stations=(station)
-    if self.stations.include?(station)
+  def add_station(station)
+    if @stations.include?(station)
       raise StationAlreadyExist, "This station is already on the route list"
     else
-      self.stations < station
+      @stations << station
     end
+  end
+
+#print station list
+  def show
+    @stations.each{|station| puts "Station: #{station}"}
   end
 
   #delete station from route
@@ -21,11 +46,4 @@ class Route
       self.stations.delete(station)
     end
   end
-
-  #print station list
-  def show
-    puts "Station start: #{start}"
-    self.stations. each {|station| puts "Station: #{station}"}
-    puts "Station end: #{end}"
-  end
-end
+ end
