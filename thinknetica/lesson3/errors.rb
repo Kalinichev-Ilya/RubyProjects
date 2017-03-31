@@ -9,3 +9,6 @@ end
 
 class StationAlreadyExist < StandartError
 end
+
+class InvalidArgument < StandartError
+end

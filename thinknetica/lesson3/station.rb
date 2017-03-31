@@ -2,24 +2,19 @@ require_relative 'errors'
 require_relative 'train'
 
 class Station
-  attr_accessor :name
-  attr_reader :trains  
+  attr_reader :name
 
-  initialize (name)
-    @name=name
+  def initialize (name, trains = [])
+    @name = name
+    @trains = trains
   end
 
-
   #set train into array trains
-  @trains = []
-  @train = Train.new
-  
-  def train=(train)
-    @train = train
-    if !@trains.include?(train)
-      @trains << train
+  def add_train(train)
+    if @trains.include?(train)
+      raise TrainAlreadyExist, "This train #{train} is already on the station".      
     else
-      raise TrainAlreadyExist, "This train #{train} is already on the station".
+      @trains << train if train.class == Train
     end
   end
 
@@ -29,21 +24,16 @@ class Station
   end
 
   #print list of trains by type
-  def traint_list_by_type(type)
+  def train_list_by_type(type)
     puts "#{type}:"
-
     count = 0
-    #trains = [{train1, type}, {train1, type}..]
-    @trains.each do |train|
-      train.each do |train_name, type_value|
-        if type_value == type
-          count +=1
-          puts "Train #{count}: #{train_name}"
-        end
+    @trains.each do |train| 
+      if train.type == type 
+        count += 1
+        puts "Train #{count}: #{train}"
       end
-     else
-      raise  TrainNotFound, "Trains not found."
     end
+    puts "Trains of this type are not found." if count == 0
   end
 
   #Send train from the station
@@ -54,5 +44,4 @@ class Station
     else
       raise TrainNotFound, "This train is no longer at the station."
   end
-
 end

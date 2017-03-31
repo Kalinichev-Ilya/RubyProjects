@@ -1,4 +1,5 @@
 require_relative 'route'
+require_relative 'errors'
 
 Class Train
   attr_accessor :type
