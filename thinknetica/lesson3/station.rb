@@ -1,48 +1,43 @@
-require_relative 'errors'
 require_relative 'train'
 
+# ...
 class Station
   attr_reader :name
 
-  def initialize (name, trains = [])
+  # @param [String] name
+  # @param [Train] trains
+  # @return [Station]
+  def initialize(name, trains = [])
     @name = name
     @trains = trains
   end
 
-  #set train into array trains
+  # @param [Train] train
+  # @return [Train] array
   def add_train(train)
-    if @trains.include?(train)
-      raise TrainAlreadyExist, "This train #{train} is already on the station".      
-    else
-      @trains << train
-    end
+    @trains << train
   end
 
-  #print list of "trains on the station"
-  def train_list
-    trains.each {|train| puts "#Train: {train}, #{train.type} type"}
+  def print_train_list
+    @trains.each { |train| puts "#Train: {train}, #{train.type} type" }
   end
 
-  #print list of trains by type
-  def train_list_by_type(type)
+  # @param [String] type
+  def train_list_by(type)
     puts "#{type}:"
     count = 0
-    @trains.each do |train| 
-      if train.type == type 
+    @trains.each do |train|
+      if train.type == type
         count += 1
         puts "Train #{count}: #{train}"
       end
     end
-    puts "Trains of this type are not found." if count == 0
+    puts 'Trains of this type are not found.' if count.zero?
   end
 
-  #Send train from the station
+  # @param [Train] train
   def move_away(train)
-    if @trains.include?(train)
-      puts "Train #{train} mowe away from station."
-      trains.delete(train)
-    else
-      raise TrainNotFound, "This train is no longer at the station."
-  end
+    @trains.delete(train)
+    puts "Train #{train} mowe away from station."
   end
 end
