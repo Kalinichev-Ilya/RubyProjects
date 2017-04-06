@@ -14,7 +14,7 @@ class Station
     if @trains.include?(train)
       raise TrainAlreadyExist, "This train #{train} is already on the station".      
     else
-      @trains << train if train.class == Train
+      @trains << train
     end
   end
 
@@ -43,5 +43,6 @@ class Station
       trains.delete(train)
     else
       raise TrainNotFound, "This train is no longer at the station."
+  end
   end
 end

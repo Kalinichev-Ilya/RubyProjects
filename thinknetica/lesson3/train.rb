@@ -1,13 +1,11 @@
 require_relative 'route'
 require_relative 'errors'
 
-Class Train
-  attr_accessor :type
+class Train
   attr_writer :speed
   attr_reader :route
 
-  def initialize(type, wagons = 1, speed = 0)
-    @type = type    
+  def initialize(wagons = 1, speed = 0)   
     @wagons = wagons
     @speed = speed
   end
@@ -33,22 +31,25 @@ Class Train
   end
 
   #add wagon
-  def add_wagon(count)
-    @wagon += count
+  def add_wagon
+    if not_move?
+      @wagon += 1
+    else raise ChangeWagonsException ,"You can't add wagon on the speed"
+    end
   end
 
   #delete wagon
-  def delete_wagon(count)
-    @wagon -= count
+  def delete_wagon
+    if not_move?
+      @wagon -= 1
+    else
+      raise ChangeWagonsException ,"You can't delete wagon on the speed"
+    end
   end
 
   #add route
-  def add_route(route)
-    if route.class == Route
-      @route = route
-    else
-      raise InvalidArgument, "The passed argument must belong to the Route class."
-    end
+  def route=(route)
+    @route = route
   end
 
   #train rode the route
@@ -58,4 +59,15 @@ Class Train
       sleep 3
     end
   end
+
+  private 
+
+  def not_move?
+    if self.speed > 0
+      false
+    else
+      true
+    end
+  end
+
 end

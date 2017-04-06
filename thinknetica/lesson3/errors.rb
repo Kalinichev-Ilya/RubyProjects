@@ -1,14 +1,17 @@
-class TrainNotFoundError < StandartError
+class TrainNotFoundError < StandardError
 end
 
-class TrainAlreadyExist < StandartError
+class TrainAlreadyExist < StandardError
 end
 
-class StationNotFoundError < StandartError
+class StationNotFoundError < StandardError
 end
 
-class StationAlreadyExist < StandartError
+class StationAlreadyExist < StandardError
 end
 
-class InvalidArgument < StandartError
+class InvalidArgument < StandardError
+end
+
+class ChangeWagonsException < StandardError
 end

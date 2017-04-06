@@ -2,23 +2,23 @@ class Route
 attr_reader :start
 attr_reader :end
 
-initialize(stations = [])
+def initialize(stations = [])
   @stations = stations
   @start = stations.first
   @end = stations.pop
 end
 
 #set first station
-def start=(start)
-  @stations.unshift(start)
+def start=(station)
+  @stations.unshift(station)
 end
 
-#set ending station
-def end=(end)
-  @stations << end
+ # set ending station
+def end=(station)
+  @stations << station
 end
 
-#get intermediate stations list
+ # get intermediate stations list
 def intermediate_stations
   @stations.pop.shift
   @stations
@@ -46,4 +46,5 @@ end
       self.stations.delete(station)
     end
   end
- end
+
+end
