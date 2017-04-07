@@ -1,21 +1,21 @@
 require_relative 'train'
-require_relative 'cargo_wagon'
+require_relative 'passenger_wagon'
 
 # ..
-class CargoTrain < Train
+class PassengerTrain < Train
 attr_reader :wagons
 attr_reader :type
 
 # @param [Wagon] wagons
-def initialize(name, type = 'cargo', wagons = [], speed = 0, route = [])
+def initialize(name, type = 'passenger', wagons = [], speed = 0, route = [])
   super
   @wagons = wagons
   @type = type
 end
 
-# @return [CargoWagon]
+# @return [PassengerWagon]
 def add_wagon
-  @wagons << CargoWagon.new
+  @wagons << PassengerWagon.new
 end
 
 # @return [Wagon]

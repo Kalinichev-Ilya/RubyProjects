@@ -5,34 +5,33 @@ require_relative 'errors'
 class Train
   attr_writer :speed
   attr_accessor :route
+  attr_accessor :name
 
   # @param [Wagon] wagons
   # @param [String] speed
-  def initialize(wagons = 1, speed = 0, route = [])
+  def initialize(name, type, wagons = 1, speed = 0, route = [])
+    @name = name
     @wagons = wagons
     @speed = speed
     @route = route
+    @type = type
   end
 
-  # train speed up
   # @param [String] speed
   def speed_up(speed)
     @speed += speed
   end
 
-  # prints the current train speed
   def show_speed
     puts "Current speed: #{@speed}"
   end
 
-  # Turn on the brakes
-  def brake
+  def brakes_on
     @speed = 0
   end
 
-  # displays the number of wagons on the screen
   def count_wagons
-    puts "Number of wagons: #{@wagons}"
+    puts "Number of wagons: #{@wagons.size}"
   end
 
   # add wagon

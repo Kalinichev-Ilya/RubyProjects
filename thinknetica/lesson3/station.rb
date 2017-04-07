@@ -18,18 +18,18 @@ class Station
     @trains << train
   end
 
-  def print_train_list
-    @trains.each { |train| puts "#Train: {train}, #{train.type} type" }
+  def train_list
+    @trains
   end
 
   # @param [String] type
   def train_list_by(type)
-    puts "#{type}:"
     count = 0
+    result = []
     @trains.each do |train|
       if train.type == type
         count += 1
-        puts "Train #{count}: #{train}"
+        result << train
       end
     end
     puts 'Trains of this type are not found.' if count.zero?
