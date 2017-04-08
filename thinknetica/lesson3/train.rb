@@ -7,14 +7,17 @@ class Train
   attr_accessor :route
   attr_accessor :name
 
+  @@trains = {}
+
   # @param [Wagon] wagons
   # @param [String] speed
-  def initialize(name, type, wagons = 1, speed = 0, route = [])
-    @name = name
+  def initialize(number, type, wagons = 1, speed = 0, route = []) # TODO switch @name on @number
+    @name = number
     @wagons = wagons
     @speed = speed
     @route = route
     @type = type
+    @@trains[number] = Train.new(@number, @type, @speed, @route, @type)
   end
 
   # @param [String] speed
@@ -34,12 +37,10 @@ class Train
     puts "Number of wagons: #{@wagons.size}"
   end
 
-  # add wagon
   def add_wagon
     @wagon += 1 if not_move?
   end
 
-  # delete wagon
   def delete_wagon
     @wagon -= 1 if not_move?
   end
@@ -52,8 +53,12 @@ class Train
     end
   end
 
-  private
+  # TODO testing
+  def find(name)
+    @@trains.each { |number, train| number == name ? train : nil }
+  end
 
+  protected
   def not_move?
     @speed > 0
   end
