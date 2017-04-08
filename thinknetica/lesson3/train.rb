@@ -7,7 +7,7 @@ class Train
   attr_accessor :route
   attr_accessor :name
 
-  @@trains = {}
+  @trains = {}
 
   # @param [Wagon] wagons
   # @param [String] speed
@@ -17,7 +17,7 @@ class Train
     @speed = speed
     @route = route
     @type = type
-    @@trains[number] = Train.new(@number, @type, @speed, @route, @type)
+    remember
   end
 
   # @param [String] speed
@@ -55,11 +55,15 @@ class Train
 
   # TODO testing
   def find(name)
-    @@trains.each { |number, train| number == name ? train : nil }
+    @trains.each { |number, train| number == name ? train : nil }
   end
 
   protected
   def not_move?
     @speed > 0
+  end
+
+  def remember
+    @trains[number] = Train.new(@number, @type, @speed, @route, @type)
   end
 end
