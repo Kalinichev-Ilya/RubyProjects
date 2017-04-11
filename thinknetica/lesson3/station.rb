@@ -3,23 +3,20 @@ require_relative 'train'
 # ...
 class Station
   attr_reader :name
+  attr_reader :trains
 
   # @param [String] name
   # @param [Train] trains
-  # @return [Station]
   def initialize(name, trains = [])
-    @name = name
+    self.name = name
     @trains = trains
   end
 
   # @param [Train] train
   # @return [Train] array
   def add_train(train)
+    raise ArgumentError, 'Train is null' if train.nil?
     @trains << train
-  end
-
-  def train_list
-    @trains
   end
 
   # @param [String] type
@@ -37,7 +34,15 @@ class Station
 
   # @param [Train] train
   def move_away(train)
+    raise ArgumentError, 'Train is null' if train.nil?
     @trains.delete(train)
     puts "Train #{train} mowe away from station."
+  end
+
+  protected
+
+  def name=(name)
+    raise ArgumentError, 'Name is null' if name.nil?
+    @name = name
   end
 end

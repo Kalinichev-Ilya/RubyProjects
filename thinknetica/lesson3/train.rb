@@ -73,7 +73,7 @@ class Train
   end
 
   def remember
-    @trains = {@name.to_sym => [@name, @type, @wagons, @speed, @route]}
+    @trains = { @name.to_sym => [@name, @type, @wagons, @speed, @route] }
   end
 
   protected
