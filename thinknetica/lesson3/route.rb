@@ -1,50 +1,53 @@
+# ..
 class Route
-attr_reader :start
-attr_reader :end
+  attr_reader :stations
 
-def initialize(stations = [])
-  @stations = stations
-  @start = stations.first
-  @end = stations.pop
-end
+  def initialize(stations = [])
+    self.stations = stations
+  end
 
-#set first station
-def start=(station)
-  @stations.unshift(station)
-end
+  def stations=(stations)
+    raise ArgumentError, 'Station must be array' until stations.is_a?
+    @stations = stations
+  end
 
- # set ending station
-def end=(station)
-  @stations << station
-end
+  # set first station
+  def start=(station)
+    raise ArgumentError, 'Start station is null' if station.nil?
+    @stations.unshift(station)
+  end
 
- # get intermediate stations list
-def intermediate_stations
-  @stations.pop.shift
-  @stations
-end
+  # set ending station
+  def end=(station)
+    raise ArgumentError, 'End station is null' if station.nil?
+    @stations << station
+  end
 
-#setter route list
+  # get intermediate stations list
+  def intermediate_stations
+    @stations.pop.shift
+    @stations
+  end
+
+  # setter route list
   def add_station(station)
-    if @stations.include?(station)
-      raise StationAlreadyExist, "This station is already on the route list"
-    else
-      @stations << station
-    end
+    raise ArgumentError, 'Station is null' if station.nil?
+    @stations << station
   end
 
-#print station list
+  # print station list
   def show
-    @stations.each{|station| puts "Station: #{station}"}
+    self.stations.each { |station| puts "Station: #{station}" }
   end
 
-  #delete station from route
+  # delete station from route
   def remove(station)
-    if self.station.include?(station)
-      raise StationNotFoundError, "This station is not in the list"
-    else
       self.stations.delete(station)
-    end
   end
 
+  private
+
+  def valid?
+    self.stations.nil? || !self.stations.is_a? ? false : true
+  end
 end
