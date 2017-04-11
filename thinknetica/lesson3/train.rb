@@ -3,21 +3,35 @@ require_relative 'errors'
 
 # ..
 class Train
-  attr_writer :speed
-  attr_accessor :route
-  attr_accessor :name
+  attr_reader :route
+  attr_reader :name
 
   @trains = {}
 
   # @param [Wagon] wagons
   # @param [String] speed
   def initialize(number, type, wagons = 1, speed = 0, route = []) # TODO switch @name on @number
-    @name = number
+    self.name = number
+    @type = type # TODO: Exceptions & validate
     @wagons = wagons
-    @speed = speed
-    @route = route
-    @type = type
+    self.speed = speed
+    self.route = route
     remember
+  end
+
+  def route=(route)
+    raise ArgumentError, 'Route must be an array' unless route.is_a? || !route.nil?
+    @route = route
+  end
+
+  def name=(name)
+    raise ArgumentError, 'Train name must be a number' if name.nil? || /^\d+$/.match(name)
+    @name = name
+  end
+
+  def speed=(speed)
+    raise ArgumentError, 'Speed must be a number' if speed.nil? || /^\d+$/.match(speed)
+    @speed = speed
   end
 
   # @param [String] speed
@@ -58,12 +72,13 @@ class Train
     @trains.each { |number, train| number == name ? train : nil }
   end
 
-  protected
-  def not_move?
-    @speed > 0
+  def remember
+    @trains = {@name.to_sym => [@name, @type, @wagons, @speed, @route]}
   end
 
-  def remember
-    @trains[number] = Train.new(@number, @type, @speed, @route, @type)
+  protected
+
+  def not_move?
+    @speed > 0
   end
 end
