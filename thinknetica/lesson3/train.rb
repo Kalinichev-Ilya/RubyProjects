@@ -1,10 +1,10 @@
 require_relative 'route'
-require_relative 'errors'
 
 # ..
 class Train
   attr_reader :route
   attr_reader :name
+  attr_reader :speed
 
   @trains = {}
 
@@ -41,16 +41,12 @@ class Train
     @speed += speed
   end
 
-  def show_speed
-    puts "Current speed: #{@speed}"
-  end
-
   def brakes_on
     @speed = 0
   end
 
   def count_wagons
-    puts "Number of wagons: #{@wagons.size}"
+    @wagons.size
   end
 
   def add_wagon

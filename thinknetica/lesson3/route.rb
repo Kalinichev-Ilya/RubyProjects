@@ -14,12 +14,14 @@ class Route
   # set first station
   def start=(station)
     raise ArgumentError, 'Start station is null' if station.nil?
+    raise ArgumentError, 'Invalid class in station argument' until station.instance_of?(Station)
     @stations.unshift(station)
   end
 
   # set ending station
   def end=(station)
     raise ArgumentError, 'End station is null' if station.nil?
+    raise ArgumentError, 'Invalid class in station argument' until station.instance_of?(Station)
     @stations << station
   end
 
@@ -32,17 +34,17 @@ class Route
   # setter route list
   def add_station(station)
     raise ArgumentError, 'Station is null' if station.nil?
+    raise ArgumentError, 'Invalid class in station argument' until station.instance_of?(Station)
     @stations << station
   end
 
-  # print station list
-  def show
-    self.stations.each { |station| puts "Station: #{station}" }
+  def show_all
+    @stations
   end
 
   # delete station from route
   def remove(station)
-      self.stations.delete(station)
+    @stations.delete(station)
   end
 
   private
