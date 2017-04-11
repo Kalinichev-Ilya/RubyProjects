@@ -25,12 +25,14 @@ class Train
   end
 
   def name=(name)
-    raise ArgumentError, 'Train name must be a number' if name.nil? || /^\d+$/.match(name)
+    if name.nil? || /^(\d|[a-zA-Z]){3}-?(\d|[a-zA-Z]){2}$/.match(name)
+      raise ArgumentError, 'Train name is null, or invalid format'
+    end
     @name = name
   end
 
   def speed=(speed)
-    raise ArgumentError, 'Speed must be a number' if speed.nil? || /^\d+$/.match(speed)
+    raise ArgumentError, 'Speed is null, or not number' if speed.nil? || /^\d+$/.match(speed)
     @speed = speed
   end
 
