@@ -12,6 +12,14 @@ class Station
     @trains = trains
   end
 
+  # accept block, and do something with trains on station
+  # @param [Proc] block
+  def do_something!(&block)
+    @trains.each do |train|
+      block.call(train)
+      end
+  end
+
   # @param [Train] train
   # @return [Train] array
   def add_train(train)
@@ -36,7 +44,7 @@ class Station
   def move_away(train)
     raise ArgumentError, 'Train is null' if train.nil?
     @trains.delete(train)
-    puts "Train #{train} mowe away from station."
+    puts "Train #{train} move away from station."
   end
 
   protected

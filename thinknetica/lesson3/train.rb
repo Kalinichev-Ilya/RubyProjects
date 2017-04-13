@@ -13,7 +13,7 @@ class Train
   def initialize(number, type, wagons = 1, speed = 0, route = []) # TODO switch @name on @number
     self.name = number
     @type = type # TODO: Exceptions & validate
-    @wagons = wagons
+    @wagons = wagons #TODO: wagons to array
     self.speed = speed
     self.route = route
     remember
@@ -72,6 +72,14 @@ class Train
 
   def remember
     @trains = { @name.to_sym => [@name, @type, @wagons, @speed, @route] }
+  end
+
+  # accept block, and do something with wagons this train
+  # @param [Proc] block
+  def do_something!(&block)
+    @wagon.each do |wagon|
+      block.call(wagon)
+    end
   end
 
   protected
