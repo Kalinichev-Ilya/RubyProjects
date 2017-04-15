@@ -1,11 +1,9 @@
 # ..
 module InstanceCounter
-
   def initialize
     register_instance
   end
 
-  @count
   def self.instances
     @count
   end

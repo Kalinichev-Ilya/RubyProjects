@@ -52,11 +52,10 @@ def add_wagon
   name = gets.chop
   @trains.each do |train|
     train.each do |key, params|
-      if key == name.to_sym
-        params.add_wagon
-        params.count_wagons
-        puts "\n"
-      end
+      next unless key == name.to_sym
+      params.add_wagon
+      params.count_wagons
+      puts "\n"
     end
   end
 end
@@ -66,45 +65,56 @@ def delete_wagon
   name = gets.chop
   @trains.each do |train|
     train.each do |key, params|
-      if key == name.to_sym
-        params.delete_wagon
-        params.count_wagons
-        puts "\n"
-      end
+      next unless key == name.to_sym
+      params.delete_wagon
+      params.count_wagons
+      puts "\n"
+    end
+  end
+end
+
+# @return [Train]
+def find_train(name)
+  @trains.each do |train|
+    train.each do |key, _params|
+      next unless key == name.to_sym
+      train
+    end
+  end
+end
+
+# @return [Station]
+def find_station(name)
+  @stations.each do |station|
+    if station.name == name
+      station
+    else
+      puts 'Station not found!'
     end
   end
 end
 
 def add_train_on_station
   puts 'Enter train name:'
-  name = gets.chop
-  @trains.each do |train|
-    train.each do |key, params|
-      if key == name.to_sym
-        puts 'Enter station name:'
-        name = gets.chop
-        @stations.each do |station|
-          if station.name == name
-            station.add_train(train)
-            puts "Train #{train} added on the station #{station.name}"
-          else
-            puts 'Station not found!'
-          end
-        end
-      end
-    end
-  end
+  train_name = gets.chop
+
+  train = find_train(train_name)
+
+  puts 'Enter station name:'
+  station_name = gets.chop
+  station = find_station(station_name)
+  station.add_train(train)
+  puts "Train #{train} added on the station #{station.name}"
 end
 
 def show_list_of_trains
   puts 'Enter station name'
   name = gets.chop
   @stations.each do |station|
-    if station.name == name
-      puts "Station #{station.name}"
-      list = station.train_list
-      list.each { |train| puts "Train #{list.index(train)}: #{train}\n\n" }
-    end
+    next unless station.name == name
+    puts "Station #{station.name}"
+    list = station.train_list
+    list.each { |train| puts "Train #{list.index(train)}: #{train}\n\n" }
   end
 end
 
@@ -112,8 +122,7 @@ end
 @trains = []
 loop do
   menu
-  input = gets.chop
-  case input
+  case gets.chop
   when 'exit'
     puts 'Goodbye!'
     break
@@ -124,12 +133,8 @@ loop do
     # puts '2. Create train'
     puts "Enter train type \n 1. Cargo train \n 2. Passenger train"
     input = gets.chop
-    if input == '1'
-      create_cargo_train
-    elsif input == '2'
-      create_passenger_train
-    else puts 'This type does not exist'
-    end
+    create_cargo_train if input == '1'
+    input == '2' ? create_passenger_train : 'This type does not exist'
   when '3'
     add_wagon
   when '4'

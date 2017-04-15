@@ -13,11 +13,10 @@ class Station
   end
 
   # accept block, and do something with trains on station
-  # @param [Proc] block
-  def do_something!(&block)
+  def do_something!
     @trains.each do |train|
-      block.call(train)
-      end
+      yield(train)
+    end
   end
 
   # @param [Train] train

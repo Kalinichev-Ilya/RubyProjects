@@ -1,46 +1,47 @@
-basket = Hash.new
+basket = {}
 
 total_price = 0
 total_count = 0
 
 exit = false
-until exit do
-  print "Product name: "
+until exit
+  print 'Product name: '
   product = gets.chomp.downcase
 
-  #input loop
-  if (product == "exit")
-  	exit = true
+  # input loop
+  if product == 'exit'
+    exit = true
   else
-  	summ = Hash.new
-  	basket[product] = ""
+    total = {}
+    basket[product] = ''
 
-    print "Price: "
+    print 'Price: '
     price = gets.chomp.to_i
-    summ[price] = ""
+    total[price] = ''
 
-    print "Count: "
+    print 'Count: '
     count = gets.chomp.to_f
 
-    #added in hash basket => {price, count}
-    summ[price] = count
-    basket[product] = summ
+    # added in hash basket => {price, count}
+    total[price] = count
+    basket[product] = total
 
-    #summ total price
-    summ.each do |price, count| 
-    	total_price += price
-    	total_count += count
+    # summ total price
+    total.each do |full_price, counting|
+      total_price += full_price
+      total_count += counting
     end
   end
 
-  #intermediate result
-  puts "------------------------"
-  basket.each do |product, summ|
-  	print "#{product}: "
-  	summ.each{|price, count| 
-  		puts "#{price} * #{count} = #{price*count}"}
+  # intermediate result
+  puts '------------------------'
+  basket.each do |name, all|
+    print "#{name}: "
+    all.each do |money, count_|
+      puts "#{money} * #{count_} = #{money * count_}"
     end
-  puts "------------------------"
+  end
+  puts '------------------------'
 end
 
 puts "------ Total #{total_price * total_count} -------"

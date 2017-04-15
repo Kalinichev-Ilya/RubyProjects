@@ -4,20 +4,20 @@ puts "You walked along South Butovo and came across sports guys. What will you d
 
 input = gets.chomp
 
-if input == "1"
-	abort "The guys easily caught you and beat you. You lose.
+if input == '1'
+  abort "The guys easily caught you and beat you. You lose.
 Game over."
 else
-	puts "One of the guy stepped forward and asked you \"Do you have a light?\"
+  puts "One of the guy stepped forward and asked you \"Do you have a light?\"
 1. Say that you don't smoke.
 2. Give a light."
 
-	input = gets.chomp
+  input = gets.chomp
 
-	if input == "2"
-		abort "Afther light, the guys went done. Congratulations, you win!"
-	else
-		"The guys where upset and beat you. You lose.
+  if input == '2'
+    abort 'Afther light, the guys went done. Congratulations, you win!'
+  else
+    "The guys where upset and beat you. You lose.
 Game over."
-	end
+  end
 end

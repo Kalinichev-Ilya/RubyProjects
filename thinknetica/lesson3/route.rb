@@ -11,17 +11,25 @@ class Route
     @stations = stations
   end
 
+  def station?(obj)
+    obj.instance_of?(Station)
+  end
+
   # set first station
   def start=(station)
     raise ArgumentError, 'Start station is null' if station.nil?
-    raise ArgumentError, 'Invalid class in station argument' until station.instance_of?(Station)
+    until station?(station)
+      raise ArgumentError, 'Invalid class in station argument'
+    end
     @stations.unshift(station)
   end
 
   # set ending station
   def end=(station)
     raise ArgumentError, 'End station is null' if station.nil?
-    raise ArgumentError, 'Invalid class in station argument' until station.instance_of?(Station)
+    until station?(station)
+      raise ArgumentError, 'Invalid class in station argument'
+    end
     @stations << station
   end
 
@@ -34,7 +42,9 @@ class Route
   # setter route list
   def add_station(station)
     raise ArgumentError, 'Station is null' if station.nil?
-    raise ArgumentError, 'Invalid class in station argument' until station.instance_of?(Station)
+    until station?(station)
+      raise ArgumentError, 'Invalid class in station argument'
+    end
     @stations << station
   end
 
@@ -50,6 +60,6 @@ class Route
   private
 
   def valid?
-    self.stations.nil? || !self.stations.is_a? ? false : true
+    stations.nil? || !stations.is_a? ? false : true
   end
 end

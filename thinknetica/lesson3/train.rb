@@ -10,17 +10,20 @@ class Train
 
   # @param [Wagon] wagons
   # @param [String] speed
-  def initialize(number, type, wagons = 1, speed = 0, route = []) # TODO switch @name on @number
+  # TODO switch @name on @number
+  def initialize(number, type, wagons = 1, speed = 0, route = [])
     self.name = number
     @type = type # TODO: Exceptions & validate
-    @wagons = wagons #TODO: wagons to array
+    @wagons = wagons # TODO: wagons to array
     self.speed = speed
     self.route = route
     remember
   end
 
   def route=(route)
-    raise ArgumentError, 'Route must be an array' unless route.is_a? || !route.nil?
+    unless route.is_a? || !route.nil?
+      raise ArgumentError, 'Route must be an array'
+    end
     @route = route
   end
 
@@ -32,7 +35,9 @@ class Train
   end
 
   def speed=(speed)
-    raise ArgumentError, 'Speed is null, or not number' if speed.nil? || /^\d+$/.match(speed)
+    if speed.nil? || /^\d+$/.match(speed)
+      raise ArgumentError, 'Speed is null, or not number'
+    end
     @speed = speed
   end
 
@@ -65,20 +70,21 @@ class Train
     end
   end
 
-  # TODO testing
+  # TODO: testing
   def find(name)
     @trains.each { |number, train| number == name ? train : nil }
   end
 
   def remember
-    @trains = { @name.to_sym => [@name, @type, @wagons, @speed, @route] }
+    @trains = {
+      @name.to_sym => [@name, @type, @wagons, @speed, @route]
+    }
   end
 
   # accept block, and do something with wagons this train
-  # @param [Proc] block
-  def do_something!(&block)
+  def do_something!
     @wagon.each do |wagon|
-      block.call(wagon)
+      yield(wagon)
     end
   end
 
