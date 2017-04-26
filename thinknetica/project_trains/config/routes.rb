@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :railway_stations
   resources :routes
   resources :tickets
+  resources :users
 end
