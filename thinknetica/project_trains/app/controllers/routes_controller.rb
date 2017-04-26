@@ -16,7 +16,7 @@ class RoutesController < ApplicationController
     @route = Route.new(route_params)
 
     if @route.save
-      redirect_to @train
+      redirect_to @route
     else
       render :new
     end
