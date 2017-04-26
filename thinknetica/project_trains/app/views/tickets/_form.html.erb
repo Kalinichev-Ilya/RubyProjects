@@ -12,10 +12,16 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :start %>
-      <%= f.text_field :start %>
-      <%= f.label :end %>
-      <%= f.text_field :end %>
+      <table>
+        <tr>
+          <th><%= f.label :start %></th>
+          <th><%= f.label :end %></th>
+        </tr>
+        <tr>
+          <td><%= f.text_field :start %></td>
+          <td><%= f.text_field :end %></td>
+        </tr>
+      </table>
     </div>
 
     <div class="actions">

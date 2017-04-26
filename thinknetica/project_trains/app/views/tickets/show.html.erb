@@ -1,10 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Start:</strong>
-  <%= @ticket.start %>
-  <strong>End:</strong>
-  <%= @ticket.end %>
+  <tr>
+    <th><strong>Start:</strong></th>
+    <th><strong>End:</strong></th>
+  </tr>
+  <tr>
+    <td><%= @ticket.start %></td>
+    <td><%= @ticket.end %></td>
+  </tr>
 </p>
 
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
