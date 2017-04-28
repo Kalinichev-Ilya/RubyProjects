@@ -14,5 +14,7 @@
       </table>
     </div>
 
-    <%= render 'common/button', resource: @ticket %>
+    <div class="actions">
+      <%= f.submit "#{ ticket.new_record? ? 'Create' : 'Edit'}" %>
+    </div>
 <% end %>

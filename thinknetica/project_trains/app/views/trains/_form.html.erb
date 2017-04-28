@@ -1,10 +1,17 @@
 <%= form_for(train) do |f| %>
-  <%= render 'common/errors', resource: @train %>
+    <%= render 'common/errors', resource: @train %>
 
-  <div class="field">
-    <%= f.label :number %>
-    <%= f.text_field :number %>
-  </div>
+    <div class="field">
+      <%= f.label :number %>
+      <%= f.text_field :number %>
+    </div>
 
-    <%= render 'common/button', resource: @train %>
+    <div class="field">
+      <%= f.label :route, "Route" %>
+      <%= f.collection_select :route_id, Route.all, :id, :name %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "#{ train.new_record? ? 'Create' : 'Edit'}" %>
+    </div>
 <% end %>
