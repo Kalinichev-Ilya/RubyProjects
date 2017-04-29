@@ -1,8 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Number:</strong>
+  <%= @wagon.number %>
   <strong>Type:</strong>
   <%= @wagon.w_type %>
+  <strong>Train:</strong>
+  <% if @wagon.train.present? %>
+      <%= @wagon.train.number %>
+  <% else %>
+      Nothing
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_wagon_path(@wagon) %> |

@@ -2,10 +2,20 @@
     <%= render 'common/errors', resource: @wagon %>
 
     <div class="field">
+      <%= f.label :number %>
+      <%= f.text_field :number %>
+    </div>
+
+    <div class="field">
       <%= f.radio_button :w_type, 'Second class' %>
       <%= f.label :type_second, 'Second-class sleeping carriage' %>
       <%= f.radio_button :w_type, 'Third class' %>
       <%= f.label :type_third, 'Third-class sleeping carriage' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :train, "Current train" %>
+      <%= f.collection_select :train_id, Train.all, :id, :number %>
     </div>
 
     <div class="actions">
