@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20170429110012) do
   end
 
   create_table "wagons", force: :cascade do |t|
-    t.string "type"
+    t.string "w_type"
   end
 
 end

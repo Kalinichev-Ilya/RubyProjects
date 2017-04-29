@@ -45,6 +45,6 @@ class WagonsController < ApplicationController
   end
 
   def wagon_params
-    params.require(:wagon).permit(:type)
+    params.require(:wagon).permit(:w_type)
   end
 end

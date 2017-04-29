@@ -2,8 +2,10 @@
     <%= render 'common/errors', resource: @wagon %>
 
     <div class="field">
-      <%= f.label :type %>
-      <%= f.text_field :type %>
+      <%= f.radio_button :w_type, 'Second class' %>
+      <%= f.label :type_second, 'Second-class sleeping carriage' %>
+      <%= f.radio_button :w_type, 'Third class' %>
+      <%= f.label :type_third, 'Third-class sleeping carriage' %>
     </div>
 
     <div class="actions">

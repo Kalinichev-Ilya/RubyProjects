@@ -1,3 +1,3 @@
 class Wagon < ApplicationRecord
-  validates :type, presence: true
+  validates :w_type, presence: true
 end
