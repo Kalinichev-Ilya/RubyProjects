@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :routes
   resources :tickets
   resources :users
+  resources :wagons
 end

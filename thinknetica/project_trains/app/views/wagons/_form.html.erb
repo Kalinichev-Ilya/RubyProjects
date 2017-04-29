@@ -1,0 +1,12 @@
+<%= form_for(wagon) do |f| %>
+    <%= render 'common/errors', resource: @wagon %>
+
+    <div class="field">
+      <%= f.label :type %>
+      <%= f.text_field :type %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "#{ wagon.new_record? ? 'Create' : 'Edit'}" %>
+    </div>
+<% end %>
