@@ -5,14 +5,38 @@
   <%= @train.number %>
 </p>
 
-<p>
-  <strong>Route:</strong>
-  <% if @train.route.present? %>
-      <%= @train.route.name %>
-  <% else %>
-      Nothing
-  <% end %>
-</p>
+<strong>Route:</strong>
+<% if @train.route.present? %>
+    <%= @train.route.name %>
+<% else %>
+    Nothing
+<% end %>
+<br>
+
+<!--Get info about wagons types-->
+<% counts = {} %>
+<% @train.wagons.group_by(&:w_type).each {|type, val| counts[type] = val.size} %>
+<% counts.each do |type, count| %>
+    <strong><%= type %>: </strong> <%= count %>
+    <br>
+<% end %>
+
+<!--Get info about count seats by wagons types-->
+<% counts = {} %>
+<% @train.wagons.group_by(&:w_type).each {|type, val| counts[type] = val} %>
+<% counts.each do |type, wagons| %>
+    <strong> <%= type %> count of seats:</strong>
+    <% upper = 0 %>
+    <% lower = 0 %>
+    <% wagons.each do |wagon| %>
+        <% upper += wagon[:upper_seats] %>
+        <% lower += wagon[:lower_seats] %>
+    <% end %>
+    <ul type="disc">
+      <li><strong>Upper: </strong> <%= upper %></li>
+      <li><strong>Lower: </strong><%= lower %></li>
+    </ul>
+<% end %>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>
