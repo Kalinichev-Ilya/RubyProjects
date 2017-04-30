@@ -3,14 +3,27 @@
 <p>
   <strong>Number:</strong>
   <%= @wagon.number %>
+  <br>
+
   <strong>Type:</strong>
   <%= @wagon.w_type %>
+  <br>
+
+  <strong>Lower seats:</strong>
+  <%= @wagon.lower_seats %>
+  <br>
+
+  <strong>Upper seats:</strong>
+  <%= @wagon.upper_seats %>
+  <br>
+
   <strong>Train:</strong>
   <% if @wagon.train.present? %>
       <%= @wagon.train.number %>
   <% else %>
       Nothing
   <% end %>
+  <br>
 </p>
 
 <%= link_to 'Edit', edit_wagon_path(@wagon) %> |

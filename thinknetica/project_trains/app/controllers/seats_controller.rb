@@ -45,6 +45,6 @@ class RoutesController < ApplicationController
   end
 
   def seat_params
-    params.require(:seat).permit(:number)
+    params.require(:seat).permit(:number, :wagon_id)
   end
 end

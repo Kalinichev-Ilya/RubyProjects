@@ -14,6 +14,13 @@
     </div>
 
     <div class="field">
+      <%= f.label :lower_seats %>
+      <%= f.text_field :lower_seats %>
+      <%= f.label :upper_seats %>
+      <%= f.text_field :upper_seats %>
+    </div>
+
+    <div class="field">
       <%= f.label :train, "Current train" %>
       <%= f.collection_select :train_id, Train.all, :id, :number %>
     </div>
