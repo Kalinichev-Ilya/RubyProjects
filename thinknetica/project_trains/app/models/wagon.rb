@@ -3,4 +3,5 @@ class Wagon < ApplicationRecord
   validates :number, presence: true
 
   belongs_to :train
+  has_many :seats
 end
