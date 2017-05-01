@@ -1,6 +1,7 @@
 <%= form_for(ticket) do |f| %>
     <%= render 'common/errors', resource: @ticket %>
 
+    <!-- Start & End stations fields -->
     <div class="field">
       <table>
         <tr>
@@ -12,6 +13,26 @@
           <td><%= f.text_field :end %></td>
         </tr>
       </table>
+    </div>
+
+    <!-- Name & Surname fields -->
+    <div class="field">
+      <table>
+        <tr>
+          <th><%= f.label :name %></th>
+          <th><%= f.label :surname %></th>
+        </tr>
+        <tr>
+          <td><%= f.text_field :name %></td>
+          <td><%= f.text_field :surname %></td>
+        </tr>
+      </table>
+    </div>
+
+    <!--select train field-->
+    <div class="field">
+      <%= f.label :train, "Current train" %>
+      <%= f.collection_select :train_id, Train.all, :id, :number %>
     </div>
 
     <div class="actions">
